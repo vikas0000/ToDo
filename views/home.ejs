@@ -1,0 +1,85 @@
+<html>
+
+    <head><title><%= title %></title>
+        <script src="jquery-3.4.1.min.js"></script>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+        <link rel="stylesheet" href="/css/home.css">
+    
+    </head>
+    <body>
+        <div class="contain">
+                <h1>TODO List</h1>
+                <div class="form1">
+                    <form action="/create_list" method="POST">
+                        <p><textarea name="discription" cols="30" rows="10" placeholder="What do you need to do?"></textarea></p>
+                        
+                        <select name="category">
+                            <option value="">Choose a category
+                            </option>
+                            <option name="school">School</option>
+                            <option name="work">Work</option>
+                            <option name="home">Home</option>
+                            <option name="friends">Friends</option>
+                            <option name="shop">Shop</option>
+                        </select>
+                        <input type="date" name="date" value="dd/mm/yyyy" class="datebox">
+                        <button type="submit" class="button1" name="submit">
+                            <span><i class="fas fa-plus-square"></i></span>Add List
+                        </button>
+                         
+                    </form>
+
+                    <div class="listItems">
+                        <% for( let i of contact_list) { %>
+                            <div class="listItem">
+                                <div id="item">
+                                <a href="/delete-list/?id=<%=i._id%>">
+                                    <!--<input type="checkbox" name="checkBox" class="checkBox">-->
+                                    <i class="fas fa-trash-alt checkBox"></i>
+                                    
+                                </a>
+                               
+                                    <div class="items">
+                                        
+                                        <p><%= i.discription %></p> 
+                                        <p><%= i.date %></p> 
+                                    </div>
+                                </div>
+                                <div class="itemCategory">
+                                        
+
+                                    <% if(i.category=='School'){ %>
+                                        <h2 style="background-color: lightseagreen; height: 100%; margin-top: 0px; text-align: center"><%= i.category %></h2>  
+
+                                    <%}%>
+                                    <% if(i.category=='Work'){ %>
+                                        <h2 style="background-color: greenyellow; height: 100%; margin-top: 0px; text-align: center"><%= i.category %></h2>  
+
+                                    <%}%>
+                                    <% if(i.category=='Home'){ %>
+                                        <h2 style="background-color: pink; height: 100%; margin-top: 0px; text-align: center"><%= i.category %></h2>  
+
+                                    <%}%>
+                                    <% if(i.category=='Friends'){ %>
+                                        <h2 style="background-color: orange; height: 100%; margin-top: 0px; text-align: center"><%= i.category %></h2>  
+
+                                    <%}%>
+                                    <% if(i.category=='Shop'){ %>
+                                        <h2 style="background-color: yellow; height: 100%; margin-top: 0px; text-align: center"><%= i.category %></h2>  
+
+                                    <%}%>
+
+                                </div>
+                            </div>
+                    
+                        <%}%>
+                    </div>
+
+                </div>
+            
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    </body>
+
+</html>
